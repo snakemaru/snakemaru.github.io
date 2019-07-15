@@ -79,13 +79,17 @@
 
 
 
-<meta property="og:type" content="website">
+<meta name="description" content="Abstract 二进制代码检测常应用于补丁分析，剽窃检测，恶意软件分析和漏洞搜索之类。现有的解决方案在二进制代码导出的语法特征上的表现因为专业知识的存在而表现有所差异（往往有性能损失或者低检测精度）。并且由于跨版本二进制代码既在语法结构上有所差异，又在语义上有轻微偏差。现有解决方案之中很少有适用于跨版本二进制代码的。 本文中提出了一种$\alpha$diff解法，采用三类语义特征来讨论这个问题">
+<meta property="og:type" content="article">
 <meta property="og:title" content="Bewaremypower">
-<meta property="og:url" content="http://yoursite.com/index.html">
+<meta property="og:url" content="http://yoursite.com/2019/07/15/adiff二进制代码检测/index.html">
 <meta property="og:site_name" content="Bewaremypower">
+<meta property="og:description" content="Abstract 二进制代码检测常应用于补丁分析，剽窃检测，恶意软件分析和漏洞搜索之类。现有的解决方案在二进制代码导出的语法特征上的表现因为专业知识的存在而表现有所差异（往往有性能损失或者低检测精度）。并且由于跨版本二进制代码既在语法结构上有所差异，又在语义上有轻微偏差。现有解决方案之中很少有适用于跨版本二进制代码的。 本文中提出了一种$\alpha$diff解法，采用三类语义特征来讨论这个问题">
 <meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-07-15T02:26:21.521Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Bewaremypower">
+<meta name="twitter:description" content="Abstract 二进制代码检测常应用于补丁分析，剽窃检测，恶意软件分析和漏洞搜索之类。现有的解决方案在二进制代码导出的语法特征上的表现因为专业知识的存在而表现有所差异（往往有性能损失或者低检测精度）。并且由于跨版本二进制代码既在语法结构上有所差异，又在语义上有轻微偏差。现有解决方案之中很少有适用于跨版本二进制代码的。 本文中提出了一种$\alpha$diff解法，采用三类语义特征来讨论这个问题">
 
 
 
@@ -115,13 +119,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/">
+  <link rel="canonical" href="http://yoursite.com/2019/07/15/adiff二进制代码检测/">
 
 
 
 
 
-  <title>Bewaremypower</title>
+  <title> | Bewaremypower</title>
   
 
 
@@ -140,8 +144,7 @@
     
   
 
-  <div class="container sidebar-position-left 
-  page-home">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -234,9 +237,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
 
@@ -266,9 +269,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/07/15/adiff二进制代码检测/" itemprop="url">Untitled</a></h1>
+          <h1 class="post-title" itemprop="name headline"></h1>
         
 
         <div class="post-meta">
@@ -318,9 +319,7 @@
       
 
       
-        
-          
-            <ul>
+        <ul>
 <li><p>Abstract</p>
 <p>二进制代码检测常应用于补丁分析，剽窃检测，恶意软件分析和漏洞搜索之类。现有的解决方案在二进制代码导出的语法特征上的表现因为专业知识的存在而表现有所差异（往往有性能损失或者低检测精度）。并且由于跨版本二进制代码既在语法结构上有所差异，又在语义上有轻微偏差。现有解决方案之中很少有适用于跨版本二进制代码的。</p>
 <p>本文中提出了一种$\alpha$diff解法，采用三类语义特征来讨论这个问题。$\alpha$diff解法首先从每个二进制函数利用DNN生成intra-function feature，这个DNN直接作用于每个函数的原字节而不是专家提供的特征（比如语法结构）。$\alpha$diff还分析了每个二进制文本的function call graph，而它在跨版本二进制代码中是相对稳定的。$\alpha$diff从中提取了inter-function feature和inter-module feature。之后本文根据这三类特征定义了一种距离，并将其应用于BCSD。我们应用了$\alpha$diff的原型于2，5000，000个样本，结果表示$\alpha$diff相对其他BCSD方法效果平均超出10个百分点。</p>
@@ -341,8 +340,6 @@
 </li>
 </ul>
 
-          
-        
       
     </div>
     
@@ -359,12 +356,12 @@
       
 
       
+      
+      
 
       
 
       
-      
-        <div class="post-eof"></div>
       
     </footer>
   </div>
@@ -374,10 +371,11 @@
   </article>
 
 
-    
-  </section>
 
-  
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -385,6 +383,10 @@
 
 
           
+
+  
+
+
 
         </div>
         
@@ -581,6 +583,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
