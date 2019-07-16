@@ -86,10 +86,12 @@
 <meta property="og:site_name" content="Bewaremypower">
 <meta property="og:description" content="Abstract 二进制代码检测常应用于补丁分析，剽窃检测，恶意软件分析和漏洞搜索之类。现有的解决方案在二进制代码导出的语法特征上的表现因为专业知识的存在而表现有所差异（往往有性能损失或者低检测精度）。并且由于跨版本二进制代码既在语法结构上有所差异，又在语义上有轻微偏差。现有解决方案之中很少有适用于跨版本二进制代码的。 本文中提出了一种$\alpha$diff解法，采用三类语义特征来讨论这个问题">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-07-16T09:29:45.010Z">
+<meta property="og:image" content="c:/Users/谐波分量/AppData/Roaming/Typora/typora-user-images/1563292143909.png">
+<meta property="og:updated_time" content="2019-07-16T15:49:05.809Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Bewaremypower">
 <meta name="twitter:description" content="Abstract 二进制代码检测常应用于补丁分析，剽窃检测，恶意软件分析和漏洞搜索之类。现有的解决方案在二进制代码导出的语法特征上的表现因为专业知识的存在而表现有所差异（往往有性能损失或者低检测精度）。并且由于跨版本二进制代码既在语法结构上有所差异，又在语义上有轻微偏差。现有解决方案之中很少有适用于跨版本二进制代码的。 本文中提出了一种$\alpha$diff解法，采用三类语义特征来讨论这个问题">
+<meta name="twitter:image" content="c:/Users/谐波分量/AppData/Roaming/Typora/typora-user-images/1563292143909.png">
 
 
 
@@ -381,7 +383,42 @@
 </li>
 <li><p>Approach</p>
 <ul>
-<li>Overview</li>
+<li><p>Overview</p>
+<p>传统的基于语法特征的解决方案不足以分析跨版本BCSD问题，跨版本二进制函数之间的相似程度应当被它们的语义特征衡量，比如它们的原文本、和同一二进制文件中其他函数之间的关系、和模块中导入的函数之间的关系。简单来所，我们把这些特征定义为intra-function,inter-function 和inter-module-feature。</p>
+<p>和使用CFG或者其他的传统方案不同，我们使用DNN获取语义特征，使用call graph（CG）获取inter-function 和inter-module-feature。后两者也可以从传统方案获取。</p>
+<p>网络的总体结构如图Figure1。</p>
+<p><img src="C:\Users\谐波分量\AppData\Roaming\Typora\typora-user-images\1563292143909.png" alt="1563292143909"></p>
+<ul>
+<li><p>Intra-function Semantic Feature</p>
+<p>受到之前二进制分析解法[45]的启发，我们同样使用神经网络从源码字节中来导出intra-function语义特征。在多次尝试后，我们发现卷积神经网络（CNN）最适用。</p>
+<p>在我们的方案中，CNN以函数$I_q$的原字节作为输入，并且将他们映射到函数嵌入$f(I_q)$（d维欧几里得空间下的向量），之后我们可以通过两个函数的函数嵌入计算两个函数之间的距离。</p>
+<p>为了检测相似性，我们需要训练模型来符合以下特征：RQ：两个相似函数之间的距离需要尽量小，而两个相异函数之间的距离需要尽量大。</p>
+<p>受到深度度量学习的启发[3,44,47]，我们同样将两个CNN应用于孪生神经网络，来适应RQ并训练CNN的参数。同Gemini[52]方案不同，我们从DNN生成的embedding以某些工程语法特征为基础，不需要专家知识，并且适用于跨版本BCSD。</p>
+<ul>
+<li><p>Embedding Function with CNN</p>
+<p>卷积神经网络（CNN）是一种应用于网格拓扑结构的已知数据的网络。现在已经在很多应用方面有了巨大成功。</p>
+<p>然而传统的CNN是专门为了图像分类而实际的，需要和RGB图像格式相似的输入，即至少有三个通道。这不适用于我们的问题，因此在多次尝试后，我们设计CNN如下：</p>
+<ul>
+<li><p>网络结构：我们的CNN拥有8个卷积层，8个分批规范化层，4个最大池化层，和两个全连接层。整个模型使用修正线性单元（ReLU）来作为非线性激活函数。网络中总共有多于1，6000个参数。</p>
+</li>
+<li><p>网络IO：CNN使用$100<em>100</em>1$的张量T作为输入，输出64维向量。我们将函数的原字节依照字节顺序存入张量T，如果函数少于10000字节，我们以0字节来补充，如果函数多于10000字节，我们舍弃剩余的字节。</p>
+<p>值得注意的是，很少有函数多于10000个字节（少于0.01%）。此外，如果函数的前10000个字节是不相似的，这两个函数也更可能是不相似的。因此舍弃剩余的字节是可行的。</p>
+</li>
+<li><p>Data augmention</p>
+<p>在图像分类应用中，数据增强是一种用于改进CNN训练数据集的常用方法。但是与图像像素不同，函数字节对于改变更加敏感，由于改变往往改动了函数的语义。因此在训练我们的模型时，我们不应用数据增强。</p>
+</li>
+<li><p>Overfitting issue</p>
+<p>我们同样考虑AlexNet中使用的手段（比如层堆叠方式），来避免模型过拟合。在实际应用中，我们使用分批规范化来讨论过拟合问题。</p>
+</li>
+</ul>
+</li>
+<li><p>Learning Parameters Using Network</p>
+<p>为了训练CNN嵌入网络中的参数。我们使用孪生神经网络结构[4]。如图Figure2中所示</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
