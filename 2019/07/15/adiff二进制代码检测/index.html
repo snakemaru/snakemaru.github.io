@@ -86,7 +86,7 @@
 <meta property="og:site_name" content="Bewaremypower">
 <meta property="og:description" content="Abstract 二进制代码检测常应用于补丁分析，剽窃检测，恶意软件分析和漏洞搜索之类。现有的解决方案在二进制代码导出的语法特征上的表现因为专业知识的存在而表现有所差异（往往有性能损失或者低检测精度）。并且由于跨版本二进制代码既在语法结构上有所差异，又在语义上有轻微偏差。现有解决方案之中很少有适用于跨版本二进制代码的。 本文中提出了一种$\alpha$diff解法，采用三类语义特征来讨论这个问题">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-07-16T09:28:02.690Z">
+<meta property="og:updated_time" content="2019-07-16T09:29:45.010Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Bewaremypower">
 <meta name="twitter:description" content="Abstract 二进制代码检测常应用于补丁分析，剽窃检测，恶意软件分析和漏洞搜索之类。现有的解决方案在二进制代码导出的语法特征上的表现因为专业知识的存在而表现有所差异（往往有性能损失或者低检测精度）。并且由于跨版本二进制代码既在语法结构上有所差异，又在语义上有轻微偏差。现有解决方案之中很少有适用于跨版本二进制代码的。 本文中提出了一种$\alpha$diff解法，采用三类语义特征来讨论这个问题">
@@ -375,17 +375,10 @@
 <li><p>Evaluation Metric </p>
 <p>BCSD方案的目标是精确辨别匹配函数。我们通过计算匹配函数是否在BCSD结果的前K个中来评估模型，与相关工作[29,47]中的做法相似。</p>
 <p>给定两个二进制文件$B_1 = f_{11}, f_{12},…,f_{1n}$,和$B_2 = f_{21},f_{22},…,f_{2m}$。为了简化问题，我们假设其中有T对函数对，记为$(f_{11},f_{21}),(f_{12},f_{22}),…,(f_{1T},f_{2T})$。剩下的函数对不匹配。</p>
-<p>对于$B_1$中的任意函数$f_{1i}$，BCSD方案根据$B_2$中函数对于$f_{1i}$的相似性将$B_2$中的函数排序。我们定义前K个函数为$topK(f_{1i})$,并且定义$hit@K(f_{1i})$为$f_{1i}$的匹配函数是否在$topK(f_{1i})$<br>$$<br>hit@K(f_{1i})=\left{<br>\begin{aligned}<br>&amp;1,f_{2i}\in topK(f_{1i})and i \leq T\<br>&amp;0,otherwise<br>\end{aligned}<br>\right.<br>\tag{1}<br>$$</p>
+<p>对于$B_1$中的任意函数$f_{1i}$，BCSD方案根据$B_2$中函数对于$f_{1i}$的相似性将$B_2$中的函数排序。我们定义前K个函数为$topK(f_{1i})$,并且定义$hit@K(f_{1i})$为$f_{1i}$的匹配函数是否在$topK(f_{1i})$<br>$$<br>hit@K(f_{1i})=\left{<br>\begin{aligned}<br>&amp;1,f_{2i}\in topK(f_{1i})and i \leq T\<br>&amp;0,otherwise<br>\end{aligned}<br>\right.<br>\tag{1}<br>$$<br>BCSD的评估量定义如下<br>$$<br>Recall@K(B_1,B_2)=\frac{\sum_{i=1}^{T}hit@K(f_{1i})}{T}<br>\tag{2}<br>$$</p>
 </li>
 </ul>
 </li>
-</ul>
-<pre><code>BCSD的评估量定义如下
-$$
-Recall@K(B_1,B_2)=\frac{\sum_{i=1}^{T}hit@K(f_{1i})}{T}
-\tag{2}
-$$
-</code></pre><ul>
 <li><p>Approach</p>
 <ul>
 <li>Overview</li>
