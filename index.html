@@ -320,12 +320,9 @@
       
         
           
-            <ol>
-<li><p>Abstract Abstract</p>
-<p>二进制代码检测常应用于补丁分析，剽窃检测，恶意软件分析和漏洞搜索之类。现有的解决方案在二进制代码导出的语法特征上的表现因为专业知识的存在而表现有所差异（往往有性能损失或者低检测精度）。并且由于跨版本二进制代码既在语法结构上有所差异，又在语义上有轻微偏差。现有解决方案之中很少有适用于跨版本二进制代码的。</p>
-<p>本文中提出了一种$\alpha$diff解法，采用三类语义特征来讨论这个问题。$\alpha$diff解法首先从每个二进制函数利用DNN生成intra-function feature，这个DNN直接作用于每个函数的原字节而不是专家提供的特征（比如语法结构）。$\alpha$diff还分析了每个二进制文本的function call graph，而它在跨版本二进制代码中是相对稳定的。$\alpha$diff从中提取了inter-function feature和inter-module feature。之后本文根据这三类特征定义了一种距离，并将其应用于BCSD。我们应用了$\alpha$diff的原型于2，5000，000个样本，结果表示$\alpha$diff相对其他BCSD方法效果平均超出10个百分点。</p>
-</li>
-</ol>
+            <p>###Abstract</p>
+<p> 二进制代码检测常应用于补丁分析，剽窃检测，恶意软件分析和漏洞搜索之类。现有的解决方案在二进制代码导出的语法特征上的表现因为专业知识的存在而表现有所差异（往往有性能损失或者低检测精度）。并且由于跨版本二进制代码既在语法结构上有所差异，又在语义上有轻微偏差。现有解决方案之中很少有适用于跨版本二进制代码的。</p>
+<p>  本文中提出了一种$\alpha$diff解法，采用三类语义特征来讨论这个问题。$\alpha$diff解法首先从每个二进制函数利用DNN生成intra-function feature，这个DNN直接作用于每个函数的原字节而不是专家提供的特征（比如语法结构）。$\alpha$diff还分析了每个二进制文本的function call graph，而它在跨版本二进制代码中是相对稳定的。$\alpha$diff从中提取了inter-function feature和inter-module feature。之后本文根据这三类特征定义了一种距离，并将其应用于BCSD。我们应用了$\alpha$diff的原型于2，5000，000个样本，结果表示$\alpha$diff相对其他BCSD方法效果平均超出10个百分点。</p>
 <h3 id="1-Introduction"><a href="#1-Introduction" class="headerlink" title="1.Introduction"></a>1.Introduction</h3><p>  评估两个二进制文件之间是否相似的问题被称为BCSD（二进制代码相似性检测）。它在很多应用中有着重要作用，例如代码剽窃检测[32,33,43]，恶意软件系谱分析[2,26,28]。在应用于补丁前后版本的二进制文件使，它也能够被用于1day漏洞分析，或者用于导出漏洞特征。此外，应用于已知bug和目标应用时它能够用于cross-architecturebugsearching[16,17,52]。</p>
 <p>  然而BCSD面临着某些挑战。首先，不同的编译器优化产生cross-optimization binaries。第二，不同算法的编译器（比如寄存器分配问题）生成cross compiler binaries。第三，不同平台产生cross-architecture binaries。这些二进制代码可能时语义相似的，但拥有不同的语法结构。另一方面，源代码本身根据时间可能会有修改（比如补丁），产生cross-version binaries。这些二进制代码当然时相似的，因为他们是同源的。但是他们拥有不同的语法结构和轻微不同的语义。现有的方案从某种程度上适用于这些问题，但是在cross-version binaries问题上表现较差。</p>
 <p>  目前的BCSD问题解法主要依赖于CFG（comtrol flow graph），最常用的解法BinDiff利用了图形同构理论（GI）来比较函数的CFG。然而图形同构理论花费时间，缺乏多项式时间解。此外，GI对CFG改动非常敏感（即使是镜像操作），因此准确度很低。BinHunt和iBinHunt在GI的基础上引入了符号执行与污染分析来讨论这个问题，但是精确度也较低且需要先验条件。</p>
