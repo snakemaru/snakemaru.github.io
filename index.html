@@ -415,13 +415,7 @@
 <p>给定两个函数$I_q$和$I_t$，我们可以计算它们之间三个特征的距离$D1、D2、D3$。如前文所述，因为两个相似函数之间的模块函数调用和语义特征都是相似的，因此$D1、D3$较小，其中相似函数之间的$D1$是一定小于$m$的。但是由于跨版本二进制代码拥有不同函数调用图，尤其是对于图中函数顶点的出入度，因此$D2$可能较大。</p>
 <p>因此我们计算全局距离如下来表示两个函数之间的相似程度：<br>$$<br>D(I_q,I_t)=D1(I_q,I_t)+(1-\xi^{D2(I_q,I_t)})+D3(I_q,I_t)<br>\tag{11}<br>$$<br>这里$\xi$是事先定义的$(0,1)$区间内的常参数，用来限制D2的影响。</p>
 <p>对问题中的每个函数$I_q$我们将计算它和目标函数之间的全局距离，之后将目标函数按照全局距离的大小排序。其中最近的目标函数将更可能和$I_q$相似。</p>
-<ol start="5">
-<li><h3 id="Evaluation"><a href="#Evaluation" class="headerlink" title="Evaluation"></a>Evaluation</h3></li>
-<li><h3 id="Discussion"><a href="#Discussion" class="headerlink" title="Discussion"></a>Discussion</h3></li>
-<li><h3 id="Related-work"><a href="#Related-work" class="headerlink" title="Related work"></a>Related work</h3></li>
-<li><h3 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h3></li>
-</ol>
-
+<h3 id="4-Evaluation"><a href="#4-Evaluation" class="headerlink" title="4.Evaluation"></a>4.Evaluation</h3><h3 id="5-Discussion"><a href="#5-Discussion" class="headerlink" title="5.Discussion"></a>5.Discussion</h3><h3 id="6-Related-work"><a href="#6-Related-work" class="headerlink" title="6.Related work"></a>6.Related work</h3><h3 id="7-Conclusion"><a href="#7-Conclusion" class="headerlink" title="7.Conclusion"></a>7.Conclusion</h3>
           
         
       
