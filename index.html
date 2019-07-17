@@ -392,7 +392,7 @@
 <p><img src="C:\Users\谐波分量\AppData\Roaming\Typora\typora-user-images\1563292759925.png" alt="1563292759925"></p>
 <p>除了输入函数对$(I_q,I_t)$之外，孪生网络还引入输入$y$，输入$y$是表现两个函数$I_q$,$I_t$是否相似的物理量。如果它们相似，$y=1$否则$y=0$。</p>
 <p>训练的目标是找到满足实现给定条件的最优的参数$\theta$，也就是让相似函数之间的距离尽量小而相异函数之间的距离尽量大。</p>
-<p>两个函数之间的intra-function features定义如下：<br>$$<br>D1(I_q,I_t)=\arrowvert f(I_q;\theta)-f(I_t;\theta)\arrowvert<br>\tag{3}<br>$$<br>为了达到这个目标，我们定义对比损失函数如下：</p>
+<p>两个函数之间的intra-function features定义如下：<br>$$<br>D1(I_q,I_t)=\lvert f(I_q;\theta)-f(I_t;\theta)\lvert<br>\tag{3}<br>$$<br>为了达到这个目标，我们定义对比损失函数如下：</p>
 <p>$$<br>L(\theta)=\mathop{Average}_{(I_q,I_t)}<br>\lbrace<br>y\cdot D1(I_q,I_t)+(1-y)\cdot max(0,m-D1(I_q,I_t))<br>\rbrace<br>\tag{4}<br>$$<br>$m$是一个预先给定的常参数，即相异函数之间的最短距离。</p>
 <p>我们可以发现，如果这个损失函数取小值，那么$D1(I_q,I_t)$就是在$y=1$时趋近于0，而$max(0,m-D1(I_q,I_t))$就是在$y=0$时趋近于0的。简单来说就是经过变换之后的每个函数的embedding在空间中都是与相似函数相近而与相异函数距离远的。因此之前的要求能够被满足。</p>
 <p>现在模型的训练目标被转化为寻找参数$\theta$来使孪生网络的损失函数取最小。这个问题能使用应用回溯算法的StochasticGradient Descent(SGD)来解决[31,41]。</p>
@@ -412,7 +412,64 @@
 <p>给定两个函数$I_q$和$I_t$，我们可以计算它们之间三个特征的距离$D1、D2、D3$。如前文所述，因为两个相似函数之间的模块函数调用和语义特征都是相似的，因此$D1、D3$较小，其中相似函数之间的$D1$是一定小于$m$的。但是由于跨版本二进制代码拥有不同函数调用图，尤其是对于图中函数顶点的出入度，因此$D2$可能较大。</p>
 <p>因此我们计算全局距离如下来表示两个函数之间的相似程度：<br>$$<br>D(I_q,I_t)=D1(I_q,I_t)+(1-\xi^{D2(I_q,I_t)})+D3(I_q,I_t)<br>\tag{11}<br>$$<br>这里$\xi$是事先定义的$(0,1)$区间内的常参数，用来限制D2的影响。</p>
 <p>对问题中的每个函数$I_q$我们将计算它和目标函数之间的全局距离，之后将目标函数按照全局距离的大小排序。其中最近的目标函数将更可能和$I_q$相似。</p>
-<h3 id="4-Evaluation"><a href="#4-Evaluation" class="headerlink" title="4.Evaluation"></a>4.Evaluation</h3><h3 id="5-Discussion"><a href="#5-Discussion" class="headerlink" title="5.Discussion"></a>5.Discussion</h3><h3 id="6-Related-work"><a href="#6-Related-work" class="headerlink" title="6.Related work"></a>6.Related work</h3><h3 id="7-Conclusion"><a href="#7-Conclusion" class="headerlink" title="7.Conclusion"></a>7.Conclusion</h3>
+<h3 id="4-Evaluation"><a href="#4-Evaluation" class="headerlink" title="4.Evaluation"></a>4.Evaluation</h3><h4 id="4-1Implementation"><a href="#4-1Implementation" class="headerlink" title="4.1Implementation"></a>4.1Implementation</h4><p>我们实施了$\alpha$diff方法的原型，它包含三个方面：预处理、特征生成、神经网络模型。预处理作为IDAPro6.8[24]的嵌入执行。对二进制文件中的每个函数，三种信息被导出，如section3中。最终原码被输入网络转化为函数嵌入，网络模型在TensorFlow-1.3[1]andKeras-2.0[8].环境中实施。</p>
+<h4 id="4-2Evaluation-Setup"><a href="#4-2Evaluation-Setup" class="headerlink" title="4.2Evaluation Setup"></a>4.2Evaluation Setup</h4><p>我们的实验在配备两个2.20GHz的IntelXeonE5-2650v4CPU（共 24核）、128G内存、12TB硬盘、配有四张4NVIDIATeslaP100PCIE16G显卡的服务器上进行。在本次实验中只使用了一张显卡。</p>
+<h5 id="4-2-1dataset"><a href="#4-2-1dataset" class="headerlink" title="4.2.1dataset"></a>4.2.1dataset</h5><p>我们需要数据集来训练神经网络和评估模型。我们从66，823份X86 Linux平台下收集了2，489，793对正样本（函数对）。如同Table1中显示，这个数据集有两份来源。</p>
+<p><img src="C:\Users\谐波分量\AppData\Roaming\Typora\typora-user-images\1563353633133.png" alt="1563353633133"></p>
+<p>第一个来源是GitHub仓库，我们收集了31份项目的9419次发布的源码，所有的发布都由GCC-5.4采用默认优化算法编译。我们将每个项目的两次发布二进制配对，得到共8，510对。</p>
+<p>第二个来源是Debian的包仓库，我们直接从.deb包中获取源码。我们从Ubuntu12.04、14.04、16.04下得到了895个包的合计1，842个版本。我们将每个版本的二进制代码和它们的最近版本匹配，共得到58，313对。</p>
+<p>对于每对跨版本二进制文件，我们检索成对匹配函数，它们具有相同的名称但不相同。为了增加多样性，我们还提取了一些函数，它们在跨版本二进制文件中是相同的。 最后，我们总共有2,489,793跨版本匹配函数，来自66,823成对的跨版本二进制文件。 其中，约1.52％成对的跨版本函数是相同的。值得注意的是，BinDiff的结果显示，29.4％的对是相同的，这是由于基于GI的算法中引入的不准确性。</p>
+<p>Ground Truth 如同前文所说，为了得到匹配函数的正确标注，我们利用函数名，因此依赖于函数二进制文件中可能有的调试符号。对于GitHub代码，编译选项-g在编译时被添加。对Debian包仓库，我们只手机那些符号文件，收集好这些标注之后，我们剥离了二进制文件中的所有调试符号，并在处理之后的数据上评估我们的模型。</p>
+<h5 id="4-2-2DatasetSplit"><a href="#4-2-2DatasetSplit" class="headerlink" title="4.2.2DatasetSplit"></a>4.2.2DatasetSplit</h5><p>我们将数据集分为三个不相交的集合，分别用于训练、测试和评价。为了评估训练模型对于新二进制文件的效果，我们将三个集合中的正样本比例设为4：1：1 。见Table1。</p>
+<h5 id="4-2-3Neural-Network-Training"><a href="#4-2-3Neural-Network-Training" class="headerlink" title="4.2.3Neural Network Training"></a>4.2.3Neural Network Training</h5><p>In the CNN model, we use the RMSProp optimizer [25], set the learning rate to 0.001, and set the forgetting factor to 0.9. In the Siamese network (Eq.4), we set the margin m, i.e., the minimal distance between dissimilar functions, to 1.0. Furthermore, we set the ξ in the overall similarity score formula (e.g., Equation 11) to 0.75. For each mini-batch, 100 positive samples are selected and 200 semihard negative samples are generated online. The Siamese network is trained for 200 epochs (3.075 h/epoch), to tune the parameters in the CNN embedding network.</p>
+<h4 id="4-3-Hyper-parameters-in-the-Siamese-Network"><a href="#4-3-Hyper-parameters-in-the-Siamese-Network" class="headerlink" title="4.3 Hyper-parameters in the Siamese Network"></a>4.3 Hyper-parameters in the Siamese Network</h4><p>受限于时间和资源影响，我们每次训练使用25%样本，30epochs。我们在正样本不少于100的测试集合上评估。</p>
+<h5 id="4-3-1-Input-Shape-and-Convolutional-Layer-Type"><a href="#4-3-1-Input-Shape-and-Convolutional-Layer-Type" class="headerlink" title="4.3.1 Input Shape and Convolutional Layer Type"></a>4.3.1 Input Shape and Convolutional Layer Type</h5><p>（Recall@1下的评估如下</p>
+<p><img src="C:\Users\谐波分量\AppData\Roaming\Typora\typora-user-images\1563357648100.png" alt="1563357648100"></p>
+<p>得到的结论：</p>
+<ul>
+<li>1D-CNN效果不如2D，但是原因未知</li>
+<li>embedding的大小在64维时表现最好</li>
+<li>对负采样方式，$\alpha$diff-4tuple效果最好</li>
+<li>对网络结构，4tuple孪生网络效果最好</li>
+</ul>
+<h5 id="4-4-1-Evaluation-on-Testing-Set"><a href="#4-4-1-Evaluation-on-Testing-Set" class="headerlink" title="4.4.1 Evaluation on Testing Set"></a>4.4.1 Evaluation on Testing Set</h5><p><img src="C:\Users\谐波分量\AppData\Roaming\Typora\typora-user-images\1563358114375.png" alt="1563358114375"></p>
+<h5 id="4-4-2Evaluation-on-coreutils"><a href="#4-4-2Evaluation-on-coreutils" class="headerlink" title="4.4.2Evaluation on coreutils"></a>4.4.2Evaluation on coreutils</h5><p><img src="C:\Users\谐波分量\AppData\Roaming\Typora\typora-user-images\1563358186885.png" alt="1563358186885"></p>
+<h4 id="4-5-Performance-in-Cross-compiler-BCSD"><a href="#4-5-Performance-in-Cross-compiler-BCSD" class="headerlink" title="4.5 Performance in Cross-compiler BCSD"></a>4.5 Performance in Cross-compiler BCSD</h4><p>Cross-compiler BCSD has three sub-types:</p>
+<ul>
+<li>cross-compiler-vendor</li>
+<li>cross-compiler-version </li>
+<li>cross-optimization-level. </li>
+</ul>
+<h5 id="4-5-1-Cross-compiler-vendor-amp-Cross-compiler-version"><a href="#4-5-1-Cross-compiler-vendor-amp-Cross-compiler-version" class="headerlink" title="4.5.1 Cross-compiler-vendor &amp; Cross-compiler-version."></a>4.5.1 Cross-compiler-vendor &amp; Cross-compiler-version.</h5><p>六种漏洞项目下的表现：compiled the pre-patch version with gcc-4.6.3,<br>and compiled the post-patch version with clang-3.8. </p>
+<p>两个实验：</p>
+<ul>
+<li>查询补丁文件中的漏洞：如果返回了漏洞或者漏洞在top1，则√否则×</li>
+<li>检查全局精确度：即Recall@1和MRR</li>
+</ul>
+<p><img src="C:\Users\谐波分量\AppData\Roaming\Typora\typora-user-images\1563358389234.png" alt="1563358389234"></p>
+<h5 id="4-5-2-Cross-compiler-vendor-amp-Cross-optimization-level"><a href="#4-5-2-Cross-compiler-vendor-amp-Cross-optimization-level" class="headerlink" title="4.5.2 Cross-compiler-vendor &amp; Cross-optimization-level."></a>4.5.2 Cross-compiler-vendor &amp; Cross-optimization-level.</h5><p>we compiled coreutils for x86 32-bit and x86 64-bit architectures, using gcc (v4.8.2) and clang (v3.0) with various optimization levels (O0 to O3)</p>
+<p><img src="C:\Users\谐波分量\AppData\Roaming\Typora\typora-user-images\1563359083466.png" alt></p>
+<p>Figure5中我们将COREUTILS中不同架构下编译的二进制进行匹配。其中C32 − G64 means that, when querying functions compiled using clang for x86 architecture, around 42% of their matching functions compiled using gcc for x64 architecture are ranked 1 by the tool BinGo, while 46% are ranked 1 by αDiff。</p>
+<p><img src="C:\Users\谐波分量\AppData\Roaming\Typora\typora-user-images\1563359155550.png" alt="1563359155550"></p>
+<h3 id="4-7-Application-in-Vulnerability-Search"><a href="#4-7-Application-in-Vulnerability-Search" class="headerlink" title="4.7 Application in Vulnerability Search"></a>4.7 Application in Vulnerability Search</h3><p>We first compiled the vulnerable OpenSSL library, which have<br>two virtually identical vulnerabilities TLS and DTLS, on platforms<br>ARM, MIPS and x86。</p>
+<p>$\alpha$diff总能将匹配函数放在1-2位，总的来看它的效果优于其他方法。</p>
+<p>由于Gemini引入了专家知识，我们认为其有偏差，不进行比较。</p>
+<p><img src="C:\Users\谐波分量\AppData\Roaming\Typora\typora-user-images\1563359634747.png" alt="1563359634747"></p>
+<h3 id="5-Discussion"><a href="#5-Discussion" class="headerlink" title="5.Discussion"></a>5.Discussion</h3><ul>
+<li>无法得知为何2D-CNN的表现比1D-CNN要好</li>
+<li>函数调用图和函数模块调用的特征在我们的评估中占比很大，我们将来会考虑使用跨架构数据集来实验。</li>
+</ul>
+<h3 id="6-Related-work"><a href="#6-Related-work" class="headerlink" title="6.Related work"></a>6.Related work</h3><p>在本节中，我们简要地调查了密切相关的工作。</p>
+<h4 id="6-1二进制代码相似性分析"><a href="#6-1二进制代码相似性分析" class="headerlink" title="6.1二进制代码相似性分析"></a>6.1二进制代码相似性分析</h4><ul>
+<li><h6 id="Staitic-Analysis"><a href="#Staitic-Analysis" class="headerlink" title="Staitic Analysis."></a>Staitic Analysis.</h6><p> BinDiff [55]，DiscovRE [16]和Genius [17]基于CFG / CG图同构（GI）理论[14,18]。 DiscovRE [16]标识了一组轻量级的数字特征和根据功能构建预过滤器，以快速识别小型候选功能集。 Genius [17]将CFG编码为高级数值向量，以实现实时漏洞搜索大量的固件映像。这些方法取决于图表匹配，没有已知的多项式时间算法，同时忽略具体汇编级指令的语义。<br>受DiscovRE和Genius的启发，Gemini [52]假设一个函数可以表示为ACFG，一个带有数字属性的CFG。它通过孪生结构和Structure2vec [11]网络将每个ACFG转换为嵌入式，这与我们的方法相似。但是，Gemini依赖于手动调整的特征，例如CFG结构和数字特征。 $\alpha$Diff从函数的原始字节中提取特征，没有人为干扰。<br>BinHunt [19]和iBinHunt [34]通过符号执行和污点分析来扩展GI，以找到语义差异。 BinGo [6]通过选择性内联捕获完整的函数语义然后利用长度改变的迹线进行对未知二进制函数的建模。 Esh [12]通过计算较小片段的函数相似性获得全局相似性。这些方法在计算上很昂贵。例如，Esh需要平均3分钟比较一对功能。</p>
+</li>
+<li><h6 id="Dynamic-Analysis"><a href="#Dynamic-Analysis" class="headerlink" title="Dynamic Analysis"></a>Dynamic Analysis</h6><p>假设代码在运行时行为相似，BELX [15]在某些调用文本中执行每对函数，并在受控随机环境下收集函数的运行时行为。 IMF-SIM [49]引入内存模糊来解决动态方法的覆盖问题。这些方法依赖于特定于体系结构用于执行或模拟二进制文件的工具，并且不方便应用。</p>
+</li>
+</ul>
+<h4 id="6-2深度度量学习"><a href="#6-2深度度量学习" class="headerlink" title="6.2深度度量学习"></a>6.2深度度量学习</h4><p>Bromley等人。 [4]为深度度量学习和学习铺平了道路，并训练了孪生网络用于签名验证。 （比如Chopra）[9]提出了一种从数据中训练相似性度量的方法并将其应用于面部验证。 [3]利用深度卷积网络和孪生网络学习了fine-grained<br>visual similarity。FaceNet [44]使用深度卷积网络和 triplet embedding [51] 学习了面部特征的嵌入以进行面部验证和识别。与之相反有contrastive embedding [22]和triplet embedding [51]。[47]提出了一种充分利用分批优化的新的深度特征嵌入算法。</p>
+<h4 id="6-3卷积神经网络"><a href="#6-3卷积神经网络" class="headerlink" title="6.3卷积神经网络"></a>6.3卷积神经网络</h4><p>卷积网络是一种专门用于处理数据的神经网络，具有已知的网格状拓扑结构[20,31]。 CNN通常由多个交错层组成卷积，非线性激活，局部响应归一化，池化层和一个或多个完全连接的层。自从AlexNet [30]在ILSVRC2012 [42]中取得了显着成功，已有很多人对CNN和其变种感兴趣，例如VGGNet [46]，Inception-v3 [48]和ResNet [23]。更多信息可以在[20,21,54]中找到。</p>
+<p>### </p>
+
           
         
       
