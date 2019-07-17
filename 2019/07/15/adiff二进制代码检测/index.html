@@ -88,7 +88,7 @@
 <meta property="og:locale" content="default">
 <meta property="og:image" content="c:/Users/谐波分量/AppData/Roaming/Typora/typora-user-images/1563292143909.png">
 <meta property="og:image" content="c:/Users/谐波分量/AppData/Roaming/Typora/typora-user-images/1563292759925.png">
-<meta property="og:updated_time" content="2019-07-17T02:51:22.782Z">
+<meta property="og:updated_time" content="2019-07-17T05:32:36.749Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Bewaremypower">
 <meta name="twitter:description" content="Abstract 二进制代码检测常应用于补丁分析，剽窃检测，恶意软件分析和漏洞搜索之类。现有的解决方案在二进制代码导出的语法特征上的表现因为专业知识的存在而表现有所差异（往往有性能损失或者低检测精度）。并且由于跨版本二进制代码既在语法结构上有所差异，又在语义上有轻微偏差。现有解决方案之中很少有适用于跨版本二进制代码的。 本文中提出了一种$\alpha$diff解法，采用三类语义特征来讨论这个问题">
@@ -415,9 +415,10 @@
 </li>
 <li><p>Learning Parameters Using Network</p>
 <p>为了训练CNN嵌入网络中的参数。我们使用孪生神经网络结构[4]，如图Figure2中所示。这个孪生神经网络以两个CNN嵌入，每个CNN以一个函数作为输入，记为$I_q$和$I_t$，并且输出相应的函数嵌入，记为$f(I_q;\theta)$和$f(I_t;\theta)$，这里$f$表现的是网络的结构而$\theta$表示网络的参数。</p>
+<p><img src="C:\Users\谐波分量\AppData\Roaming\Typora\typora-user-images\1563292759925.png" alt="1563292759925"></p>
 <p>除了输入函数对$(I_q,I_t)$之外，孪生网络还引入输入$y$，输入$y$是表现两个函数$I_q$,$I_t$是否相似的物理量。如果它们相似，$y=1$否则$y=0$。</p>
 <p>训练的目标是找到满足实现给定条件的最优的参数$\theta$，也就是让相似函数之间的距离尽量小而相异函数之间的距离尽量大。</p>
-<p><img src="C:\Users\谐波分量\AppData\Roaming\Typora\typora-user-images\1563292759925.png" alt="1563292759925"></p>
+<p>两个函数之间的intra-function features定义如下：<br>$$<br>D1(I_q,I_t)=\arrowvert f(I_q;\theta)-f(I_t;\theta)\arrowvert<br>\tag{3}<br>$$<br>为了达到这个目标，我们定义对比损失函数如下：</p>
 </li>
 </ul>
 </li>
@@ -426,9 +427,79 @@
 </ul>
 </li>
 </ol>
-<ol start="5">
-<li><p>Evaluation</p>
-</li>
+<pre><code>$$
+L(\theta)=\mathop{Average}_{(I_q,I_t)}
+\lbrace
+y\cdot D1(I_q,I_t)+(1-y)\cdot max(0,m-D1(I_q,I_t))
+</code></pre><p>   \rbrace<br>         \tag{4}<br>       $$<br>         $m$是一个预先给定的常参数，即相异函数之间的最短距离。</p>
+<pre><code>    我们可以发现，如果这个损失函数取小值，那么$D1(I_q,I_t)$就是在$y=1$时趋近于0，而$max(0,m-D1(I_q,I_t))$就是在$y=0$时趋近于0的。简单来说就是经过变换之后的每个函数的embedding在空间中都是与相似函数相近而与相异函数距离远的。因此之前的要求能够被满足。
+
+    现在模型的训练目标被转化为寻找参数$\theta$来使孪生网络的损失函数取最小。这个问题能使用应用回溯算法的StochasticGradient Descent(SGD)来解决[31,41]。
+
+  -  Negative Training Samples
+
+    构造合适的正采样和负采样对模型训练是重要的，如果想让CNN的损失函数收敛。
+
+    与[37,44,47]中的工作相似，我们选择从训练中的每个mini-batch中，利用正采样来生成负采样。
+
+    对mini-batch中每对样例$(I_q,I_t)$，我们生成两个semi-hard 的负样本。记为$(I_q,I_{n1})$和$(I_p,I_{n2})$。以函数$I_q$为例，我们寻找函数$I_n$来满足公式
+    $$
+    0&lt;D1(I_q,I_n)&lt;m
+    \tag{6}
+    $$
+    我们随机选择函数$I_{n1}$来作为满足这个约束的负样本。但是我们舍弃那些强的负样本（比如使$D1(I_q,I_n)$最小的那些），因为这些样本可能使模型导向局部最优解。
+
+    为了获取足够多的负样本，我们在每次每次训练中轮换mini-batch。即在每次训练中我们随机排序二进制文件，然后再随机排序每对二进制文件中的函数对（正样本）。这些随机排序的正样本将之后被分为mini-batch并生成新的负样本。
+
+- Inter-function Semantic Feature
+
+  函数并不单独工作，它们需要调用其他函数或者被其他函数调用。这种同一二进制文件中函数与其他函数之间的相互关系是重要的语义特征。这种特征能够使用call graph表示。我们发现相似的函数拥有相似的调用图。
+
+  理想情况下函数的总体调用图需要被考虑。比如说SMIT[26]使用了调用图匹配来检测恶意软件之间的相似性。虽然它们使用了有效的图编辑算法，计算时间对于实际应用仍然显得过长。
+
+  在我们的使用中我们只导出图的顶点出入度来作为它的inter-function feature。即对每个函数$I_q$我们将其的inter-function feature转化为二维向量：
+  $$
+  g(I_q)= (in(I_q),out(I_q))
+  \tag{7}
+  $$
+  这里$in(I_q)$和$out(I_q)$是函数顶点$I_q$在调用图中的入度和出度。两个函数inter-function feature之间的欧几里得距离定义如下：
+  $$
+  D2(I_q,I_t)=\lvert g(I_q)-g(I_t)\rvert
+  \tag{8}
+  $$
+
+- Inter-module Semantic Feature
+
+  每个函数$I_q$有定义在默认模块中的模块调用函数集合，定义为$imp(I_q)$。我们发现相似的函数拥有相似的模块导入函数。此外，由于模块化开发的存在，集合$imp(I_q)$在版本变化中是趋于稳定的。模块调用函数集合也是重要的语义特征，我们把它记作inter-module feature。
+
+  出于连续性考虑，我们同样将inter-function feature转化为向量来进行距离计算。我们使用元素检测公式来将一个集合嵌入超集空间。
+  $$
+  h(set,superset)=&lt;x_1,x_2,...,x_N&gt;
+  \tag{9}
+  $$
+  对两个函数$I_q$和$I_t$，假设它们所在的二进制文件是$B_q$和$B_t$，我们记它们的模块导入函数集合为$imp(B_q)$和$imp(B_t)$。之后我们将超集取为$imp(B_q)\bigcap imp(B_t)$。并用公式计算inter-function feature之间的距离如下：
+  $$
+  D3(I_q,I_t)=\lvert h(imp(I_q),imp(B_q)\bigcap imp(B_t))-h(imp(I_t),imp(B_q)\bigcap imp(B_t))\rvert
+  \tag{10}
+  $$
+  值得注意的是，$imp(B_q)$是$imp(I_q)$的超集，而$imp(B_t)$是$imp(I_t)$的超集。此外，即使函数名之类的符号可能已经从二进制文件中被剔除，模块调用函数名将一直随着模块之间的链接而存在。因此提取这种特征是较为容易的。
+
+- Overall Similarity Computation
+
+  给定两个函数$I_q$和$I_t$，我们可以计算它们之间三个特征的距离$D1、D2、D3$。如前文所述，因为两个相似函数之间的模块函数调用和语义特征都是相似的，因此$D1、D3$较小，其中相似函数之间的$D1$是一定小于$m$的。但是由于跨版本二进制代码拥有不同函数调用图，尤其是对于图中函数顶点的出入度，因此$D2$可能较大。
+
+  因此我们计算全局距离如下来表示两个函数之间的相似程度：
+  $$
+  D(I_q,I_t)=D1(I_q,I_t)+(1-\xi^{D2(I_q,I_t)})+D3(I_q,I_t)
+  \tag{11}
+  $$
+  这里$\xi$是事先定义的$(0,1)$区间内的常参数，用来限制D2的影响。
+
+  对问题中的每个函数$I_q$我们将计算它和目标函数之间的全局距离，之后将目标函数按照全局距离的大小排序。其中最近的目标函数将更可能和$I_q$相似。
+</code></pre><ol start="5">
+<li>Evaluation</li>
+</ol>
+<ol start="6">
 <li><p>Discussion</p>
 </li>
 <li><p>Related work</p>
