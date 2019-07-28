@@ -5,7 +5,7 @@
   
 
 
-<html class="theme-next gemini use-motion" lang>
+<html class="theme-next pisces use-motion" lang>
 <head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -93,7 +93,7 @@
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
-    scheme: 'Gemini',
+    scheme: 'Pisces',
     version: '5.1.4',
     sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
     fancybox: true,
@@ -249,7 +249,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/22/t统计和z统计/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/28/java 2019-7-28/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="snakemaru">
@@ -268,7 +268,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/07/22/t统计和z统计/" itemprop="url">Untitled</a></h1>
+                <a class="post-title-link" href="/2019/07/28/java 2019-7-28/" itemprop="url">Untitled</a></h1>
         
 
         <div class="post-meta">
@@ -280,8 +280,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-07-22T20:52:03+08:00">
-                2019-07-22
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-07-28T21:44:01+08:00">
+                2019-07-28
               </time>
             
 
@@ -320,374 +320,106 @@
       
         
           
-            <div class="iteye-blog-content-contain" style="font-size: 14px;">
-<p>z统计和t统计可以用来检验两个平均数之间差异显著的程度，z适合大样本的情况(样本数大于30)，t适合小样本的情况。</p>
-<p>z检验的步骤：</p>
-<p style>第一步：建立虚无假设<span class="Apple-converted-space">&nbsp;</span><span class="texhtml" style="margin: 0px; font-family: serif;"><em style="font-style: italic; margin: 0px;">H</em><sub style="line-height: normal; margin: 0px; font-size: smaller; vertical-align: sub;">0</sub>:μ<sub style="line-height: normal; margin: 0px; font-size: smaller; vertical-align: sub;">1</sub><span class="Apple-converted-space">&nbsp;</span>= μ<sub style="line-height: normal; margin: 0px; font-size: smaller; vertical-align: sub;">2</sub></span><span class="Apple-converted-space">&nbsp;</span>，即先假定两个平均数之间没有显著差异，</p>
-<p style>　　第二步：计算<a title="统计量" style="margin: 0px; color: #173abd; text-decoration: none;" href="http://wiki.mbalib.com/wiki/%E7%BB%9F%E8%AE%A1%E9%87%8F" target="_blank" rel="noopener">统计量</a>Z值，对于不同类型的问题选用不同的<a title="统计量" style="margin: 0px; color: #173abd; text-decoration: none;" href="http://wiki.mbalib.com/wiki/%E7%BB%9F%E8%AE%A1%E9%87%8F" target="_blank" rel="noopener">统计量</a>计算方法，</p>
-<p style>　　1、如果检验一个样本平均数（<img class="tex" style="margin: 0px; vertical-align: middle; border: #333333 0px solid;" alt="\bar{X}" src="http://wiki.mbalib.com/w/images/math/4/1/2/412ea207d7b3d525be8706413dd92c0d.png">）与一个已知的总体平均数(<span class="texhtml" style="margin: 0px; font-family: serif;">μ<sub style="line-height: normal; margin: 0px; font-size: smaller; vertical-align: sub;">0</sub></span>)的差异是否显著。其Z值计算公式为：</p>
-<p style>　　<img class="tex" style="margin: 0px; vertical-align: middle; border: #333333 0px solid;" alt="Z=\frac{\bar{X}-\mu_0}{\frac{S}{\sqrt{n}}}" src="http://wiki.mbalib.com/w/images/math/9/f/1/9f11c41bbcb4bd6c9c616c6f452ff342.png"></p>
-<p style>　　其中：</p>
-<ul style>
-<li style="margin: 0px 0px 0px 10px; unicode-bidi: embed; display: list-item;">
-<img class="tex" style="margin: 0px; vertical-align: middle; border: #333333 0px solid;" alt="\bar{X}" src="http://wiki.mbalib.com/w/images/math/4/1/2/412ea207d7b3d525be8706413dd92c0d.png">是检验样本的平均数；</li>
-<li style="margin: 0px 0px 0px 10px; unicode-bidi: embed; display: list-item;">
-<span class="texhtml" style="margin: 0px; font-family: serif;">μ<sub style="line-height: normal; margin: 0px; font-size: smaller; vertical-align: sub;">0</sub></span>是已知<a title="总体" style="margin: 0px; color: #2153b0; text-decoration: none;" href="http://wiki.mbalib.com/wiki/%E6%80%BB%E4%BD%93" target="_blank" rel="noopener">总体</a>的平均数；</li>
-<li style="margin: 0px 0px 0px 10px; unicode-bidi: embed; display: list-item;">S是样本的<a title="标准差" style="margin: 0px; color: #2153b0; text-decoration: none;" href="http://wiki.mbalib.com/wiki/%E6%A0%87%E5%87%86%E5%B7%AE" target="_blank" rel="noopener">标准差</a>；</li>
-<li style="margin: 0px 0px 0px 10px; unicode-bidi: embed; display: list-item;">n是样本容量。</li>
+            <h3 id="1-Java的基础语法"><a href="#1-Java的基础语法" class="headerlink" title="1.Java的基础语法"></a>1.Java的基础语法</h3><h4 id="类"><a href="#类" class="headerlink" title="类"></a>类</h4><p>基本形式 ：类头+类体</p>
+<p>java中要求程序中的类名和文件名保持一致</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> &lt;<span class="title">name</span>&gt;</span>&#123;</span><br><span class="line">    &lt;method&gt;</span><br><span class="line">    &lt;method&gt;</span><br><span class="line">        ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h4><p>基本形式：方法头+方法体</p>
+<p>大括号内的代码块属于main方法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">    &lt;statement&gt;</span><br><span class="line">    &lt;statement&gt;</span><br><span class="line">        ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="输出语句"><a href="#输出语句" class="headerlink" title="输出语句"></a>输出语句</h4><ul>
+<li>字符串:“”括起</li>
+<li>特殊字符需要使用转义字符\处理</li>
+<li>println语句实际的作用是：将内容输出到当前行并换行；而print语句只将内容输出到当前行。可以通过println语句产生一个空行</li>
+<li>输出内容中的箭头说明了下一个输出的位置，我们将其称为output cursor（输出光标</li>
+<li>空的print语句是无意义的，也是非法的(IDE会报错)</li>
 </ul>
-<p style>　　2、如果检验来自两个的两组样本平均数的差异性，从而判断它们各自代表的总体的差异是否显著。其Z值计算公式为：</p>
-<p style>　　<img class="tex" style="margin: 0px; vertical-align: middle; border: #333333 0px solid;" alt="Z=\frac{\bar{X_1}-\bar{X_2}}{\sqrt{\frac{S_1}{n_1}+\frac{S_2}{n_2}}}" src="http://wiki.mbalib.com/w/images/math/1/4/f/14f14e3e14c24d47ab2de44782670c21.png"></p>
-<p style>　　其中：</p>
-<ul style>
-<li style="margin: 0px 0px 0px 10px; unicode-bidi: embed; display: list-item;">
-<img class="tex" style="margin: 0px; vertical-align: middle; border: #333333 0px solid;" alt="\bar{X_1},\bar{X_2}" src="http://wiki.mbalib.com/w/images/math/e/b/7/eb7edd2053c0ed81ca013db9922bb239.png">是样本1，样本2的平均数；</li>
-<li style="margin: 0px 0px 0px 10px; unicode-bidi: embed; display: list-item;">
-<span class="texhtml" style="margin: 0px; font-family: serif;"><em style="font-style: italic; margin: 0px;">S</em><sub style="line-height: normal; margin: 0px; font-size: smaller; vertical-align: sub;">1</sub>,<em style="font-style: italic; margin: 0px;">S</em><sub style="line-height: normal; margin: 0px; font-size: smaller; vertical-align: sub;">2</sub></span>是样本1，样本2的标准差；</li>
-<li style="margin: 0px 0px 0px 10px; unicode-bidi: embed; display: list-item;">
-<span class="texhtml" style="margin: 0px; font-family: serif;"><em style="font-style: italic; margin: 0px;">n</em><sub style="line-height: normal; margin: 0px; font-size: smaller; vertical-align: sub;">1</sub>,<em style="font-style: italic; margin: 0px;">n</em><sub style="line-height: normal; margin: 0px; font-size: smaller; vertical-align: sub;">2</sub></span>是样本1，样本2的容量。</li>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> utl*;</span><br><span class="line">System.out.println()</span><br></pre></td></tr></table></figure>
+<h4 id="标识符"><a href="#标识符" class="headerlink" title="标识符"></a>标识符</h4><p>标识符可以是程序中某个（类或方法的）实例的名字。标识符必须以字母开头，可以含有数字、_、$，不能含有其他符号。</p>
+<p>按照驼峰命名法，所有的类名都以大写字母开头，所有的方法名都以小写字母开头。对多个单词组成的类名或者方法名，要求从第一个单词开始之后的单词首字母大写。</p>
+<p>对于常量标识符，所有单词首字母大写，以下划线分隔。如下例：</p>
+<p>AllMyChildren(类名)</p>
+<p>allMyChildren(方法名)</p>
+<p>ALL_MY_CHILDREN(常量名)</p>
+<p>调试时需要牢记。</p>
+<h4 id="关键字"><a href="#关键字" class="headerlink" title="关键字"></a>关键字</h4><h4 id="注释与可读性"><a href="#注释与可读性" class="headerlink" title="注释与可读性"></a>注释与可读性</h4><p>可读性规则：</p>
+<ul>
+<li>类和方法头单独一行</li>
+<li>每行最多包含一条语句</li>
+<li>使用缩进</li>
+<li>空格</li>
 </ul>
-<p style>　　第三步：比较计算所得Z值与理论Z值，推断发生的概率，依据Z值与差异显著性关系表作出判断。如下表所示：</p>
+<p>注释方法：</p>
+<ul>
+<li>/<em> like this  可以换行</em>/</li>
+<li>注释中不能存在注释结尾符号*/</li>
+<li>//单行注释</li>
+</ul>
+<h4 id="错误"><a href="#错误" class="headerlink" title="错误"></a>错误</h4><ul>
+<li>语法错误 </li>
+<li>逻辑错误</li>
+<li>运行错误</li>
+</ul>
+<h4 id="过程分解"><a href="#过程分解" class="headerlink" title="过程分解"></a>过程分解</h4><h5 id="静态方法："><a href="#静态方法：" class="headerlink" title="静态方法："></a>静态方法：</h5><p>一段有名称的java语句块，是过程分解的单元，每个静态方法解决整个问题中的一部分。所有静态方法有相似的结构：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span>&lt;name&gt;()&#123;</span><br><span class="line">    &lt;statement&gt;;</span><br><span class="line">    &lt;statement&gt;;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//关键字public说明这个方法对程序中的所有部分有效</span></span><br><span class="line"><span class="comment">//static说明这个方法是静态的</span></span><br><span class="line"><span class="comment">//void说明该方法不返回结果</span></span><br><span class="line"><span class="comment">//&lt;name&gt;是方法名称</span></span><br><span class="line"><span class="comment">//（）中定义的是方法需要的输入参数</span></span><br></pre></td></tr></table></figure>
+<p>执行静态方法的过程称为方法调用（method call），会执行方法中的所有语句</p>
+<h5 id="控制流程："><a href="#控制流程：" class="headerlink" title="控制流程："></a>控制流程：</h5><p>Java程序中语句的执行顺序。</p>
+<h5 id="在方法中调用其他方法"><a href="#在方法中调用其他方法" class="headerlink" title="在方法中调用其他方法"></a>在方法中调用其他方法</h5><p>java程序总是从main方法开始执行，并对main方法中出现的方法依次调用，若main方法中的方法还调用了其他方法，继续调用。</p>
+<p>静态方法的自调用会产生程序错误。</p>
+<h3 id="2-基本数据类型和确定循环"><a href="#2-基本数据类型和确定循环" class="headerlink" title="2.基本数据类型和确定循环"></a>2.基本数据类型和确定循环</h3><p>java是一种type-safe的语言，也就是说所有内容都有自己的type，而这个信息需要提前声名。</p>
+<p>java支持两种数据类型：基本类型的数据和对象。</p>
+<h4 id="基本数据类型"><a href="#基本数据类型" class="headerlink" title="基本数据类型"></a>基本数据类型</h4><p>boolean、byte、char、double（双精度浮点）、float、int、long、short</p>
+<h4 id="表达式"><a href="#表达式" class="headerlink" title="表达式"></a>表达式</h4><h4 id="优先级"><a href="#优先级" class="headerlink" title="优先级"></a>优先级</h4><h4 id><a href="#" class="headerlink" title></a><img src="C:\Users\谐波分量\AppData\Roaming\Typora\typora-user-images\1564298911916.png" alt="1564298911916"></h4><p>例：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">12</span> * -<span class="number">8</span> = -<span class="number">96</span></span><br></pre></td></tr></table></figure>
+<h4 id="类型混用和类型转换"><a href="#类型混用和类型转换" class="headerlink" title="类型混用和类型转换"></a>类型混用和类型转换</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">(<span class="keyword">int</span>) <span class="number">1.87</span></span><br><span class="line">(<span class="keyword">int</span>)(<span class="number">2.5</span>/<span class="number">0.15</span>)</span><br><span class="line"><span class="comment">//类型转换只对紧跟其后的数值有效</span></span><br><span class="line"><span class="comment">//int（-2147483648~2147483647）</span></span><br></pre></td></tr></table></figure>
+<h4 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h4><p>用于存储数值的有名称和类型的内存位置</p>
+<p>java中的变量名称通常使用小写字母开头，但是之后每个单词的首字母大写</p>
+<p>变量使用之前需要进行<strong>声明</strong>，声明通过指定名称和类型来请求一个新的变量，每个变量只能声明一次（多次声明会报错）。声明格式</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;type&gt;&lt;name&gt;;</span><br></pre></td></tr></table></figure>
+<p>声明后，使用赋值语句进行变量的初始化。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;variable&gt; = &lt;expression&gt;;</span><br></pre></td></tr></table></figure>
+<p>首先计算右侧的表达式值，再将表达式值赋给左侧变量。</p>
+<ul>
+<li>可以在声明的同时赋值</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> a = <span class="number">100</span>;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>可以同时声明一串类型相同的变量</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> a, b, c, d;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>可以同时声明一串类型相同的变量并赋值</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> a = <span class="number">100</span>, b = <span class="number">101</span>, c = <span class="number">102</span>;</span><br></pre></td></tr></table></figure>
+<h4 id="字符串连接"><a href="#字符串连接" class="headerlink" title="字符串连接"></a>字符串连接</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"I have "</span> + <span class="number">3</span> + <span class="string">" things to concatenate"</span></span><br><span class="line">  <span class="comment">//字符串连接中将整数值3转化为文本形式，再连接产生新的字符串</span></span><br></pre></td></tr></table></figure>
+<p>用于连接字符串的“+”与加法运算的“+”具有相同的优先级，这会产生一些歧义。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">5</span> + <span class="string">"hello"</span> + <span class="number">7</span> + <span class="number">6</span></span><br><span class="line"><span class="comment">//先产生字符串“5hello7”，再计算“5hello7” + 6</span></span><br></pre></td></tr></table></figure>
+<h4 id="增减量运算符"><a href="#增减量运算符" class="headerlink" title="增减量运算符"></a>增减量运算符</h4><p>+= 、 -= 、*= 、/=</p>
+<p>x++、 –y（前自增和后自减</p>
+<p><img src="C:\Users\谐波分量\AppData\Roaming\Typora\typora-user-images\1564301384086.png" alt="1564301384086"></p>
+<h4 id="变量和混合类型"><a href="#变量和混合类型" class="headerlink" title="变量和混合类型"></a>变量和混合类型</h4><p>double值不能付给整型变量，但是int值可以赋给实型变量。</p>
+<p>可以使用强制类型转换</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">x = (<span class="keyword">int</span>)(<span class="number">2</span>*<span class="number">3.8</span>);</span><br></pre></td></tr></table></figure>
+<p>类型混合的表达式类型的转换是从左到右的，例:p88</p>
+<h4 id="for循环"><a href="#for循环" class="headerlink" title="for循环"></a>for循环</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= <span class="number">6</span>; i++)&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">1</span>; j&lt;= i; j ++)&#123;</span><br><span class="line">        System.out.print(<span class="string">"*"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    System.out.println();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="复杂性管理"><a href="#复杂性管理" class="headerlink" title="复杂性管理"></a>复杂性管理</h4><h5 id="作用域：声明的有效范围"><a href="#作用域：声明的有效范围" class="headerlink" title="作用域：声明的有效范围"></a>作用域：声明的有效范围</h5><p>静态方法的作用域是它所在的整个类。</p>
+<p>变量的作用域是从声明开始的位置到它所在代码块的结束位置。变量只能在它所在的代码块中作用。</p>
+<p><strong>局部变量：在一个方法中声明的变量。它只在该方法中有效。</strong></p>
+<p><strong>变量局部化：尽可能在需要变量的最内部域中声明变量。</strong></p>
+<p><strong>全局变量：在类中而在所有方法外声明的变量，在整个类中有效</strong></p>
+<p><em>变量局部化可以隐藏内层域中的变量使其不被外层域中的语句调用</em></p>
+<p>for循环的初始化声明变量的作用域为for循环本身。在嵌套for循环的初始化声明中使用相同的变量名会造成IDE报错，但是将循环变量声明在for外不会造成IDE报错，只会造成bug。</p>
+<h5 id="伪代码"><a href="#伪代码" class="headerlink" title="伪代码"></a>伪代码</h5><p>可以利用类似自然语言的伪代码和流程图来整理程序设计中的思路。</p>
+<h5 id="类常量"><a href="#类常量" class="headerlink" title="类常量"></a>类常量</h5><p>具有常量名的数值。其值不能被改变。类常量可以在类的任意地方被访问，其作用域是整个类。</p>
+<p>常量在声明时使用关键字final表示一经赋值就不再能被改变。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">final</span> <span class="keyword">int</span> LINES = <span class="number">5</span>;</span><br></pre></td></tr></table></figure>
+<p>如果希望常量被很多不同的方法使用，一般将常量声明在这些方法之外。但是由于静态方法访问的对象只能是静态的，在静态方法访问的常量前需要加上状态关键字static。类似的，如果希望每个地方都可以访问常量，可以将常量声明为public。</p>
+<p>更多关于修饰符的部分可见<a href="https://www.runoob.com/java/java-modifier-types.html" target="_blank" rel="noopener">https://www.runoob.com/java/java-modifier-types.html</a></p>
+<ul>
+<li><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">JAVA 的类（外部类）有 2 种访问权限: public、default。*</span><br><span class="line"></span><br><span class="line">*而方法和变量有 4 种：public、default、protected、private。*</span><br><span class="line"></span><br><span class="line">*其中默认访问权限和 protected 很相似，有着细微的差别。*</span><br><span class="line"></span><br><span class="line">-  *public 意味着任何地方的其他类都能访问。*</span><br><span class="line">-  *default 则是同一个包的类可以访问。*</span><br><span class="line">-  *protected 表示同一个包的类可以访问，其他的包的该类的子类也可以访问。*</span><br><span class="line">-  *private 表示只有自己类能访问。*</span><br><span class="line"></span><br><span class="line">***修饰符：abstract、static、final***</span><br><span class="line"></span><br><span class="line">-  *abstract: 表示是抽象类。 使用对象：类、接口、方法*</span><br><span class="line">-  *static: 可以当做普通类使用，而不用先实例化一个外部类。（用他修饰后，就成了静态内部类了）。 使用对象：类、变量、方法、初始化函数（注意：修饰类时只能修饰 内部类 ）*</span><br><span class="line">-  *final: 表示类不可以被继承。 使用对象：类、变量、方法</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">- 静态方法是属于类的，动态方法属于实例对象，在类加载的时候就会分配内存，可以 通过类名直接去访问，非静态成员（变量和方法）属于类的对象，所以只有在对象实例化之后才存在，然后通过类的对象去访问。</span><br><span class="line">- 如果静态方法能调用动态方法的话，那如果别人通过类名调用静态方法时实例对象可能并不存在，但是方法内又调用了对象的方法，由于对象不存在，所以动态方法也不存在，程序肯定报错，所以java直接在编译阶段检查这种错误，避免运行时异常。</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
 
-Z值与P值关系
-
-<img class="tex" style="margin: 0px; vertical-align: middle; border: #333333 0px solid;" alt="\left| Z \right|" src="http://wiki.mbalib.com/w/images/math/0/a/8/0a8eaa7b8dc097da0c16344c9a90e087.png">
-P值
-差异程度
-<table class="wikitable" style><tbody><tr style="margin: 0px; unicode-bidi: embed;">
-</tr>
-<tr style="margin: 0px; unicode-bidi: embed;">
-<td style="margin: 0px; unicode-bidi: embed; border: #aaaaaa 1px solid; padding: 0.2em;"><img class="tex" style="margin: 0px; vertical-align: middle; border: #333333 0px solid;" alt="\ge2.58" src="http://wiki.mbalib.com/w/images/math/b/f/c/bfcb0e653a21b2b8e46fb20f09d56fd6.png"></td>
-<td style="margin: 0px; unicode-bidi: embed; border: #aaaaaa 1px solid; padding: 0.2em;"><img class="tex" style="margin: 0px; vertical-align: middle; border: #333333 0px solid;" alt="\le0.01" src="http://wiki.mbalib.com/w/images/math/0/e/3/0e3b006928a2a60a2cc839d84b810b69.png"></td>
-<td style="margin: 0px; unicode-bidi: embed; border: #aaaaaa 1px solid; padding: 0.2em;">非常显著</td>
-</tr>
-<tr style="margin: 0px; unicode-bidi: embed;">
-<td style="margin: 0px; unicode-bidi: embed; border: #aaaaaa 1px solid; padding: 0.2em;"><img class="tex" style="margin: 0px; vertical-align: middle; border: #333333 0px solid;" alt="\ge1.96" src="http://wiki.mbalib.com/w/images/math/c/a/0/ca0432cd3587c720692858fd9d562332.png"></td>
-<td style="margin: 0px; unicode-bidi: embed; border: #aaaaaa 1px solid; padding: 0.2em;"><img class="tex" style="margin: 0px; vertical-align: middle; border: #333333 0px solid;" alt="\le0.05" src="http://wiki.mbalib.com/w/images/math/6/8/a/68a593657f6fb5d89839f1c286dd8fb7.png"></td>
-<td style="margin: 0px; unicode-bidi: embed; border: #aaaaaa 1px solid; padding: 0.2em;">显著</td>
-</tr>
-<tr style="margin: 0px; unicode-bidi: embed;">
-<td style="margin: 0px; unicode-bidi: embed; border: #aaaaaa 1px solid; padding: 0.2em;">&lt;1.96</td>
-<td style="margin: 0px; unicode-bidi: embed; border: #aaaaaa 1px solid; padding: 0.2em;">&gt;0.05</td>
-<td style="margin: 0px; unicode-bidi: embed; border: #aaaaaa 1px solid; padding: 0.2em;">不显著</td>
-</tr>
-
-</tbody></table>
-<p style>　　第四步：根据是以上分析，结合具体情况，作出结论。</p>
-<p style>&nbsp;</p>
-<p>以下是对Z统计和T统计的计算方法和区别的理解：</p>
-<p>z统计是用来衡量样本均值偏离整体均值的方差倍数，就是偏离方差的程度。</p>
-<p>根据中心极限定理，总体样本N，每次抽样数n，每次抽样的均值的分布趋近正态分布。也就是随机误差符合正态分布。其分布的数学期望为总体均值μ，方差为总体方差的1/n。</p>
-<p>&nbsp;</p>
-<p>定义符号：</p>
-<p>x：样本均值</p>
-<p><span style="line-height: 1.5;">μ</span>：抽样均值，也等于总体均值</p>
-<p><span style="color: #000000;"><span style="line-height: 1.5; font-size: 12px;">ss</span>：抽样标准差</span></p>
-<p><span style="color: #000000;"><span style="line-height: 23px; font-family: 'Helvetica Neue', Arial, 'Lucida Grande', 'Lucida Sans Unicode', sans-serif;">σ：</span><span style="line-height: 23px; font-family: 'Helvetica Neue', Arial, 'Lucida Grande', 'Lucida Sans Unicode', sans-serif;">总体的标准差</span></span></p>
-<p><span style="line-height: 23px; font-family: 'Helvetica Neue', Arial, 'Lucida Grande', 'Lucida Sans Unicode', sans-serif; color: #000000;">s：样本标准差</span></p>
-<p>当我们想知道某次抽样的样本均值μi离总体均值有多少个标准差那么远，可以用如下算式来表示，称</p>
-<p>这个值为Z统计:</p>
-<p><img width="163" style="vertical-align: middle;" alt height="233" src="http://dl.iteye.com/upload/picture/pic/125314/db5e2de0-3cc8-36c9-8f8b-2934d1a43289.jpg"></p>
-<p>样本均值-抽样分布均值/抽样分布标准差</p>
-<p>&nbsp;</p>
-<p>这里通常抽样分布标准差不知道，而抽样分布标准差可以用总体标准差表示：</p>
-<p>&nbsp;<span style="color: #000000;"><span style="line-height: 1.5; font-size: 12px;">ss=<span style="color: #000000;"><span style="line-height: 23px; font-family: 'Helvetica Neue', Arial, 'Lucida Grande', 'Lucida Sans Unicode', sans-serif;"><span style="font-size: medium;">σ/n^1/2</span></span></span></span></span></p>
-<p><span style="color: #000000;"><span style="line-height: 1.5; font-size: 12px;"><span style="color: #000000;"><span style="line-height: 23px; font-family: 'Helvetica Neue', Arial, 'Lucida Grande', 'Lucida Sans Unicode', sans-serif;"><span style="font-size: medium;">因此z分布可以写成：</span></span></span></span></span></p>
-<p><img width="69" alt height="35" src="http://dl.iteye.com/upload/picture/pic/125316/cafe5d76-ea77-3f2a-ac50-1310c3224d23.png"></p>
-<p>&nbsp;这里总体的标准差也往往得不到，因此当抽样样本数大于30的时候</p>
-<p>总体标准差可以近似地用样本标准差替代：</p>
-<p><img width="81" alt height="89" src="http://dl.iteye.com/upload/picture/pic/125318/e8abb610-3a61-3405-9ee1-290171b67dd4.jpg"></p>
-<p>&nbsp;</p>
-<p>当样本数小于30的时候样本就不符合正态分布了，而是符合t分布，</p>
-<p>t统计的值和z统计的区别是一个要查z统计值表，另一个是要查t统一值表。</p>
-<p>&nbsp;</p>
-</div>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/21/matlab参数估计函数/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="snakemaru">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Bewaremypower">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/07/21/matlab参数估计函数/" itemprop="url">Untitled</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-07-21T15:36:16+08:00">
-                2019-07-21
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <div id="sina_keyword_ad_area2" class="articalContent   newfont_family">
-			<table border="1" cellspacing="0" cellpadding="0" width="901" style="width:675.6pt;border-collapse:collapse;border:none;mso-border-alt:solid windowtext .5pt; mso-yfti-tbllook:480;mso-padding-alt:0cm 5.4pt 0cm 5.4pt">
-<tbody>
-<tr>
-<td width="95" valign="top" style="width:71.0pt;border:solid windowtext 1.0pt; mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
-<p><span style="font-family:宋体;mso-ascii-font-family:">函数名</span></p>
-</td>
-<td width="345" valign="top" style="width:258.4pt;border:solid windowtext 1.0pt; border-left:none;mso-border-left-alt:solid windowtext .5pt;mso-border-alt: solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
-<p><span style="font-family:宋体;mso-ascii-font-family:">调用形式</span></p>
-</td>
-<td width="462" valign="top" style="width:346.2pt;border:solid windowtext 1.0pt; border-left:none;mso-border-left-alt:solid windowtext .5pt;mso-border-alt: solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
-<p><span style="font-family:宋体;mso-ascii-font-family:">函数说明</span></p>
-</td>
-</tr>
-<tr>
-<td width="95" valign="top" style="width:71.0pt;border:solid windowtext 1.0pt; border-top:none;mso-border-top-alt:solid windowtext .5pt;mso-border-alt:solid windowtext .5pt; padding:0cm 5.4pt 0cm 5.4pt">
-<p><span>binofit</span></p>
-</td>
-<td width="345" valign="top" style="width:258.4pt;border-top:none;border-left: none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt; mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt; mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
-<p><span>PHAT=
-binofit(X, N)</span></p>
-<p><span>[PHAT,
-PCI] = binofit(X,N)</span></p>
-<p><span>[PHAT,
-PCI]= binofit (X, N, ALPHA)</span></p>
-</td>
-<td width="462" valign="top" style="width:346.2pt;border-top:none;border-left: none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt; mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt; mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
-<p><span style="font-family:宋体;mso-ascii-font-family:">二项分布的概率的最大似然估计</span></p>
-<p><span style="font-family:宋体;mso-ascii-font-family:">置信度为</span><span>95%</span><span style="font-family:宋体;mso-ascii-font-family:">的参数估计和置信区间</span></p>
-<p><span style="font-family:宋体;mso-ascii-font-family:">返回水平α的参数估计和置信区间</span></p>
-</td>
-</tr>
-<tr>
-<td width="95" valign="top" style="width:71.0pt;border:solid windowtext 1.0pt; border-top:none;mso-border-top-alt:solid windowtext .5pt;mso-border-alt:solid windowtext .5pt; padding:0cm 5.4pt 0cm 5.4pt">
-<p><span>poissfit</span></p>
-</td>
-<td width="345" valign="top" style="width:258.4pt;border-top:none;border-left: none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt; mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt; mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
-<p><span>Lambdahat=poissfit(X)</span></p>
-<p><span>[Lambdahat, Lambdaci] = poissfit(X)</span></p>
-<p><span>[Lambdahat, Lambdaci]= poissfit (X, ALPHA)</span></p>
-</td>
-<td width="462" valign="top" style="width:346.2pt;border-top:none;border-left: none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt; mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt; mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
-<p><span style="font-family:宋体;mso-ascii-font-family:">泊松分布的参数的最大似然估计</span></p>
-<p><span style="font-family:宋体;mso-ascii-font-family:">置信度为</span><span>95%</span><span style="font-family:宋体;mso-ascii-font-family:">的参数估计和置信区间</span></p>
-<p><span style="font-family:宋体;mso-ascii-font-family:">返回水平α的λ参数和置信区间</span></p>
-</td>
-</tr>
-<tr>
-<td width="95" valign="top" style="width:71.0pt;border:solid windowtext 1.0pt; border-top:none;mso-border-top-alt:solid windowtext .5pt;mso-border-alt:solid windowtext .5pt; padding:0cm 5.4pt 0cm 5.4pt">
-<p><span>normfit</span></p>
-</td>
-<td width="345" valign="top" style="width:258.4pt;border-top:none;border-left: none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt; mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt; mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
-<p><span>[muhat,sigmahat,muci,sigmaci] =normfit(X)</span></p>
-<p><span>[muhat,sigmahat,muci,sigmaci] = normfit(X,
-ALPHA)</span></p>
-</td>
-<td width="462" valign="top" style="width:346.2pt;border-top:none;border-left: none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt; mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt; mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
-<p><span style="font-family:宋体;mso-ascii-font-family:">正态分布的最大似然估计，置信度为</span><span>95%</span><span style="font-family:宋体;mso-ascii-font-family:">的置信区间</span></p>
-<p><span style="font-family:宋体;mso-ascii-font-family:">返回水平α的期望、方差值和置信区间</span></p>
-</td>
-</tr>
-<tr>
-<td width="95" valign="top" style="width:71.0pt;border:solid windowtext 1.0pt; border-top:none;mso-border-top-alt:solid windowtext .5pt;mso-border-alt:solid windowtext .5pt; padding:0cm 5.4pt 0cm 5.4pt">
-<p><span>betafit</span></p>
-</td>
-<td width="345" valign="top" style="width:258.4pt;border-top:none;border-left: none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt; mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt; mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
-<p><span>PHAT
-=betafit (X)</span></p>
-<p><span>[PHAT,
-PCI]= betafit (X, ALPHA)</span></p>
-</td>
-<td width="462" valign="top" style="width:346.2pt;border-top:none;border-left: none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt; mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt; mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
-<p><span style="font-family:宋体;mso-ascii-font-family:">返回β分布参数</span><span>a</span><span style="font-family:宋体;mso-ascii-font-family:">和</span> <span>b</span><span style="font-family: 宋体;mso-ascii-font-family:">的最大似然估计</span></p>
-<p><span style="font-family:宋体;mso-ascii-font-family:">返回最大似然估计值和水平α的置信区间</span></p>
-</td>
-</tr>
-<tr>
-<td width="95" valign="top" style="width:71.0pt;border:solid windowtext 1.0pt; border-top:none;mso-border-top-alt:solid windowtext .5pt;mso-border-alt:solid windowtext .5pt; padding:0cm 5.4pt 0cm 5.4pt">
-<p><span>unifit</span></p>
-</td>
-<td width="345" valign="top" style="width:258.4pt;border-top:none;border-left: none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt; mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt; mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
-<p><span>[ahat,bhat] = unifit(X)</span></p>
-<p><span>[ahat,bhat,ACI,BCI] = unifit(X)</span></p>
-<p><span>[ahat,bhat,ACI,BCI]=unifit(X, ALPHA)</span></p>
-</td>
-<td width="462" valign="top" style="width:346.2pt;border-top:none;border-left: none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt; mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt; mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
-<p><span style="font-family:宋体;mso-ascii-font-family:">均匀分布参数的最大似然估计</span></p>
-<p><span style="font-family:宋体;mso-ascii-font-family:">置信度为</span><span>95%</span><span style="font-family:宋体;mso-ascii-font-family:">的参数估计和置信区间</span></p>
-<p><span style="font-family:宋体;mso-ascii-font-family:">水平α的参数估计和置信区间</span></p>
-</td>
-</tr>
-<tr>
-<td width="95" valign="top" style="width:71.0pt;border:solid windowtext 1.0pt; border-top:none;mso-border-top-alt:solid windowtext .5pt;mso-border-alt:solid windowtext .5pt; padding:0cm 5.4pt 0cm 5.4pt">
-<p><span>expfit</span></p>
-</td>
-<td width="345" valign="top" style="width:258.4pt;border-top:none;border-left: none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt; mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt; mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
-<p><span>muhat
-=expfit(X)</span></p>
-<p><span>[muhat,muci] = expfit(X)</span></p>
-<p><span>[muhat,muci] = expfit(X,alpha)</span></p>
-</td>
-<td width="462" valign="top" style="width:346.2pt;border-top:none;border-left: none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt; mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt; mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
-<p><span style="font-family:宋体;mso-ascii-font-family:">指数分布参数的最大似然估计</span></p>
-<p><span style="font-family:宋体;mso-ascii-font-family:">置信度为</span><span>95%</span><span style="font-family:宋体;mso-ascii-font-family:">的参数估计和置信区间</span></p>
-<p><span style="font-family:宋体;mso-ascii-font-family:">水平α的参数估计和置信区间</span></p>
-</td>
-</tr>
-<tr>
-<td width="95" valign="top" style="width:71.0pt;border:solid windowtext 1.0pt; border-top:none;mso-border-top-alt:solid windowtext .5pt;mso-border-alt:solid windowtext .5pt; padding:0cm 5.4pt 0cm 5.4pt">
-<p><span>gamfit</span></p>
-</td>
-<td width="345" valign="top" style="width:258.4pt;border-top:none;border-left: none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt; mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt; mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
-<p><span>phat
-=gamfit(X)</span></p>
-<p><span>[phat,pci]
-= gamfit(X)</span></p>
-<p><span>[phat,pci]
-= gamfit(X,alpha)</span></p>
-</td>
-<td width="462" valign="top" style="width:346.2pt;border-top:none;border-left: none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt; mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt; mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
-<p><span style="font-family:宋体;mso-ascii-font-family:">γ分布参数的最大似然估计</span></p>
-<p><span style="font-family:宋体;mso-ascii-font-family:">置信度为</span><span>95%</span><span style="font-family:宋体;mso-ascii-font-family:">的参数估计和置信区间</span></p>
-<p><span style="font-family:宋体;mso-ascii-font-family:">最大似然估计值和水平α的置信区间</span></p>
-</td>
-</tr>
-<tr>
-<td width="95" valign="top" style="width:71.0pt;border:solid windowtext 1.0pt; border-top:none;mso-border-top-alt:solid windowtext .5pt;mso-border-alt:solid windowtext .5pt; padding:0cm 5.4pt 0cm 5.4pt">
-<p><span>weibfit</span></p>
-<p><span>&nbsp;<wbr></span></p>
-</td>
-<td width="345" valign="top" style="width:258.4pt;border-top:none;border-left: none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt; mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt; mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
-<p><span>phat =
-weibfit(X)</span></p>
-<p><span>[phat,pci]
-= weibfit(X)</span></p>
-<p><span>[phat,pci]
-= weibfit(X,alpha)</span></p>
-</td>
-<td width="462" valign="top" style="width:346.2pt;border-top:none;border-left: none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt; mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt; mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
-<p><span style="font-family:宋体;mso-ascii-font-family:">韦伯分布参数的最大似然估计</span></p>
-<p><span style="font-family:宋体;mso-ascii-font-family:">置信度为</span><span>95%</span><span style="font-family:宋体;mso-ascii-font-family:">的参数估计和置信区间</span></p>
-<p><span style="font-family:宋体;mso-ascii-font-family:">返回水平α的参数估计及其区间估计</span></p>
-</td>
-</tr>
-<tr>
-<td width="95" valign="top" style="width:71.0pt;border:solid windowtext 1.0pt; border-top:none;mso-border-top-alt:solid windowtext .5pt;mso-border-alt:solid windowtext .5pt; padding:0cm 5.4pt 0cm 5.4pt">
-<p><span>Mle</span></p>
-</td>
-<td width="345" valign="top" style="width:258.4pt;border-top:none;border-left: none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt; mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt; mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
-<p><span>phat =
-mle('dist',data)</span></p>
-<p><span>[phat,pci]
-= mle('dist',data)</span></p>
-<p><span>[phat,pci]
-= mle('dist',data,alpha)</span></p>
-<p><span>[phat,pci]
-= mle('dist',data,alpha,p1)</span></p>
-</td>
-<td width="462" valign="top" style="width:346.2pt;border-top:none;border-left: none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt; mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt; mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
-<p><span style="font-family:宋体;mso-ascii-font-family:">分布函数名为</span><span>dist</span><span style="font-family:宋体;mso-ascii-font-family:">的最大似然估计</span></p>
-<p><span style="font-family:宋体;mso-ascii-font-family:">置信度为</span><span>95%</span><span style="font-family:宋体;mso-ascii-font-family:">的参数估计和置信区间</span></p>
-<p><span style="font-family:宋体;mso-ascii-font-family:">返回水平α的最大似然估计值和置信区间</span></p>
-<p><span style="font-family:宋体;mso-ascii-font-family:">仅用于二项分布，</span><span>pl</span><span style="font-family:宋体;mso-ascii-font-family:">为试验总次数</span></p>
-</td>
-</tr>
-</tbody>
-</table>							
-		</div>
           
         
       
@@ -1036,7 +768,7 @@ mle('dist',data)</span></p>
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-count">2</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -1095,7 +827,7 @@ mle('dist',data)</span></p>
 
 
 
-  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
 
 
 
